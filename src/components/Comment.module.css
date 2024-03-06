@@ -1,0 +1,47 @@
+.commentCard {
+    display: flex;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 520px;
+}
+
+.votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px
+}
+
+.votes button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 8px;
+}
+
+.votes div {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.commentInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.commentInfo button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #333;
+}
+
+.commentBody {
+    margin: 0;
+}
