@@ -18,6 +18,7 @@
     border-radius: 10px;
     margin-right: 10px;
     margin-top: 30px;
+    padding: 5px;
 }
 
 .votes button {
@@ -38,7 +39,6 @@
 }
 .commentInfoTitle {
     display: flex;
-    margin-bottom: 10px;
     font-weight: bold;
 }
 .avatar {
@@ -50,7 +50,7 @@
     font-weight: lighter;
     margin-left: 15px;
 }
-.commentInfo p {
+.commentInfoTitle > p {
     display: inline;
     align-self: center;
     margin: 0 0 0 20px;

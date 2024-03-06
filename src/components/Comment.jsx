@@ -2,13 +2,22 @@ import React from "react";
 import styles from './Comment.module.css'
 
 export default function Comment() {
-   
+   const [voteCount, setVoteCount] = React.useState(0)
+
+   const handleUpvote = () => {
+    setVoteCount((prevVoteCount) => prevVoteCount + 1);
+   }
+
+   const handleDownvote = () => {
+    setVoteCount((prevVoteCount) => prevVoteCount - 1);
+   }
+
     return (
         <div className={styles.commentCard}>
             <div className={styles.votes}>
-                <button>+</button>
-                <div>12</div>
-                <button>-</button>
+                <button onClick={handleUpvote}>+</button>
+                <div>{voteCount}</div>
+                <button onClick={handleDownvote}>-</button>
             </div>
             <div className={styles.commentInfo}>
                 <div className={styles.commentInfoTitle}>
