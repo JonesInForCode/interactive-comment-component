@@ -2,7 +2,7 @@
     display: flex;
     border: 1px solid #ddd;
     background-color: #fff;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     margin-bottom: 10px;
     max-width: 520px;
@@ -11,37 +11,56 @@
 .votes {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-color: hsl(239, 57%, 85%);
+    align-self: flex-start;
+    border-radius: 10px;
     margin-right: 10px;
+    margin-top: 30px;
 }
 
 .votes button {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    font-size: 8px;
+    font-size: 18px;
 }
 
 .votes div {
     font-weight: bold;
-    margin: 5px 0;
+    padding: 5px;
 }
 
 .commentInfo {
+    display: inline-flex;
+    flex-direction: column;
+}
+.commentInfoTitle {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+}
+.commentInfoTitle span {
+    color: grey;
+    font-weight: lighter;
+    margin-left: 15px;
+}
+.commentInfo p {
+    display: inline;
+    align-self: center;
+    margin: 0 0 0 20px;
 }
 
 .commentInfo button {
     border: none;
+    display: inline;
     background-color: transparent;
     cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 3px;
     color: #333;
-}
-
-.commentBody {
-    margin: 0;
+    margin: 0 0 0 auto;
 }
