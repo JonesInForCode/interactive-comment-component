@@ -14,8 +14,8 @@ function App() {
 React.useEffect(() => {
   services
     .getAll()
-    .then(response => {
-      setComments(response.data)
+    .then(initialComments => {
+      setComments(initialComments)
     })
 }, [])
 
@@ -27,8 +27,8 @@ const addComment = (event) => {
 
   services
     .create(commentObject)
-    .then(response => {
-      setComments(comments.concat(response.data))
+    .then(returnedComment => {
+      setComments(comments.concat(returnedComment))
       setNewComment('')
     })
 }
