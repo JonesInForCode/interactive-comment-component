@@ -1,4 +1,3 @@
-import * as dotenv from '../dotenv'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -7,7 +6,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCOkbm6Rt0PRTXef6YkBI2QV0HSJlB57FA",
+    apiKey: import.meta.env.VITE_API_URL,
     authDomain: "interactive-comments-ba5fc.firebaseapp.com",
     projectId: "interactive-comments-ba5fc",
     storageBucket: "interactive-comments-ba5fc.appspot.com",
