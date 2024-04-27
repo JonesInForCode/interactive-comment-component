@@ -1,7 +1,15 @@
 import React from "react";
 import styles from "./Comment.module.css";
 
-export default function Comment() {
+export default function Comment({
+  username,
+  avatar,
+  content,
+  createdAt,
+  score,
+  replies,
+  ...props
+}) {
   const [voteCount, setVoteCount] = React.useState(0);
   const [replyVisible, setReplyVisible] = React.useState(false);
   const [replyText, setReplyText] = React.useState("");
@@ -34,24 +42,23 @@ export default function Comment() {
       <div className={styles.commentCard}>
         <div className={styles.votes}>
           <button onClick={handleUpvote}>+</button>
-          <div>{voteCount}</div>
+          <div>{score + voteCount}</div>
           <button onClick={handleDownvote}>-</button>
         </div>
         <div className={styles.commentInfo}>
           <div className={styles.commentInfoTitle}>
             <img
-              src="../../images/avatars/image-amyrobson.png"
+              src={avatar}
               className={styles.avatar}
+              alt={username}
             />
             <p>
-              Username <span>date</span>
+              {username} <span>{createdAt}</span>
             </p>
             <button onClick={handleReplyClick}>reply</button>
           </div>
-    
-          <p>
-            placeholder
-          </p>
+
+          <p>{content}</p>
         </div>
       </div>
       {replyVisible && (
@@ -62,6 +69,24 @@ export default function Comment() {
             placeholder="Write a reply..."
           />
           <button onClick={handleSubmit}>Submit</button>
+        </div>
+      )}
+      {replies.length > 0 && (
+        <div className={styles.repliesContainer}>
+          <h3>Replies</h3>
+          <div className={repliesWrapper}>
+          {replies.map((reply) => (
+            <Comment
+              key={reply.id}
+              username={reply.user.username}
+              avatar={reply.user.image.png}
+              content={reply.content}
+              createdAt={reply.createdAt}
+              score={reply.score}
+              replies={reply.replies}
+              />
+          ))}
+          </div>
         </div>
       )}
     </>
