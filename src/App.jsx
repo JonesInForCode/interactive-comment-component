@@ -44,7 +44,7 @@ const addComment = (event) => {
           content={comment.content}
           createdAt={comment.createdAt}
           score={comment.score}
-          replies={comment.replies}
+          replies={comment.replies || []}
           />
       ))}
     </div>

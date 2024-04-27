@@ -7,7 +7,7 @@ export default function Comment({
   content,
   createdAt,
   score,
-  replies,
+  replies = [],
   ...props
 }) {
   const [voteCount, setVoteCount] = React.useState(0);
