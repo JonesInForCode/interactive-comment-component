@@ -74,7 +74,7 @@ export default function Comment({
       {replies.length > 0 && (
         <div className={styles.repliesContainer}>
           <h3>Replies</h3>
-          <div className={repliesWrapper}>
+          <div className={styles.repliesWrapper}>
           {replies.map((reply) => (
             <Comment
               key={reply.id}
