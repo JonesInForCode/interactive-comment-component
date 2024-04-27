@@ -64,3 +64,11 @@
     color: #333;
     margin: 0 0 0 auto;
 }
+
+.repliesContainer {
+    margin-left: 40px;
+}
+
+.repliesWrapper {
+    margin-top: 10px;
+}
