@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/comments'
+const baseUrl = 'http://localhost:3001/api/comments'
 
 const getAll = () => {
     const request = axios.get(baseUrl)
