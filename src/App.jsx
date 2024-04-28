@@ -9,6 +9,8 @@ function App() {
   const [comments, setComments] = React.useState([])
   const [newComment, setNewComment] = React.useState('')
   const [showAll, setShowAll] = React.useState(true)
+  const [replyVisible, setReplyVisible] = React.useState(false);
+  const [replyText, setReplyText] = React.useState("");
 
   // ** useEffect Hooks ** //
 React.useEffect(() => {
@@ -25,6 +27,22 @@ const addComment = (event) => {
   const commentObject = {
     content: newComment,
   }
+
+  const handleReplyClick = () => {
+    setReplyVisible(true);
+  };
+
+  const handleInputChange = (event) => {
+    setReplyText(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    console.log("Reply submitted:", replyText);
+
+    setReplyText("");
+    setReplyVisible(false);
+  };
+
 
   services
     .create(commentObject)
