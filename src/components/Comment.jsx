@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Comment.module.css";
+import Reply from "./Reply";
 
 export default function Comment({
   username,
@@ -8,27 +9,28 @@ export default function Comment({
   createdAt,
   score,
   replies = [],
-  reply,
   id,
-  replyToCommentId,
-  replyVisible,
-  ...props
 }) {
   const [voteCount, setVoteCount] = React.useState(0);
   const [replyText, setReplyText] = React.useState("");
+  const [currentReplyId, setCurrentReplyId] = React.useState(null);
 
-  const handleInputChange = (event) => {
-    setReplyText(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleReplySubmit = (replyText) => {
     // connect to backend here
 
     //
+    setCurrentReplyId(null);
+    setReplyText("");
+  };
 
-    setReplyText("")
-  }
+  const handleReplyClick = (id) => {
+    closeOtherReplyBoxes(id);
+    setCurrentReplyId(id === currentReplyId ? null : id);
+  };
+
+  const handleInputChange = (event) => {
+    setReplyText(event.target.value);
+  };
 
   const handleUpvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount + 1);
@@ -37,6 +39,23 @@ export default function Comment({
   const handleDownvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount - 1);
   };
+
+  // Helper function that hide other open comment reply boxes so that the user only ever see's '1 box'
+  const closeOtherReplyBoxes = (currentId) => {
+    const commentElements = document.querySelectorAll(`.${styles.commentCard}`);
+    commentElements.forEach((commentElement) => {
+      const replyBoxes = commentElement.querySelectorAll(`.${styles.replyBox}`);
+      replyBoxes.forEach((replyBox) => {
+        const replyBoxId = parseInt(replyBox.dataset.id);
+        if (replyBoxId === currentId) {
+          replyBox.style.display = "block";
+        } else {
+          replyBox.style.display = "none";
+        }
+      });
+    });
+  };
+
   return (
     <>
       <div className={styles.commentCard}>
@@ -51,36 +70,40 @@ export default function Comment({
             <p>
               {username} <span>{createdAt}</span>
             </p>
-            <button onClick={() => reply(id)}>reply</button>
+            <button onClick={() => handleReplyClick(id)}>reply</button>
           </div>
 
           <p>{content}</p>
         </div>
       </div>
-      {replyVisible && replyToCommentId === id && (
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={replyText}
-            onChange={handleInputChange}
-            placeholder="Write a comment..."
-          />
-          <button type="submit">Submit</button>
-        </form>
-      )}
+      <div
+        className={`${styles.replyBox} ${
+          currentReplyId === id ? styles.open : ""
+        }`}
+        data-id={id}
+      >
+        <Reply
+          onSubmit={handleReplySubmit}
+          replyText={replyText}
+          handleInputChange={handleInputChange}
+        />
+      </div>
       {replies.length > 0 && (
         <div className={styles.repliesContainer}>
           <h3>Replies</h3>
           <div className={styles.repliesWrapper}>
             {replies.map((reply) => (
-              <Comment
-                key={reply.id}
-                username={reply.user.username}
-                avatar={reply.user.image.png}
-                content={reply.content}
-                createdAt={reply.createdAt}
-                score={reply.score}
-                replies={reply.replies}
-              />
+              <div key={reply.id}>
+                <Comment
+                  key={reply.id}
+                  username={reply.user.username}
+                  avatar={reply.user.image.png}
+                  content={reply.content}
+                  createdAt={reply.createdAt}
+                  score={reply.score}
+                  replies={reply.replies}
+                />
+              </div>
             ))}
           </div>
         </div>

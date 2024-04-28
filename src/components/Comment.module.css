@@ -72,3 +72,11 @@
 .repliesWrapper {
     margin-top: 10px;
 }
+
+.replyBox {
+    display: none;
+}
+
+.replyBox.open {
+    display: block;
+}
