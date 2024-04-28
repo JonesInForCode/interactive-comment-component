@@ -50,7 +50,6 @@ function App() {
   return (
     <div>
       {comments.map((comment) => (
-        comment?.user?.username && (
         <div key={comment.id}>
           <Comment
             key={comment.id}
@@ -63,19 +62,13 @@ function App() {
             replies={comment.replies || []}
             reply={handleReplyClick}
             replyToCommentId={replyToCommentId}
+            replyText={replyText}
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit}
+            replyVisible={replyVisible}
           />
-          {replyVisible && replyToCommentId === comment.id && (
-            <form onSubmit={handleSubmit}>
-              <textarea
-                value={newTopLevelComment}
-                onChange={handleInputChange}
-                placeholder="Write a comment..."
-              />
-              <button type="submit">Submit</button>
-            </form>
-          )}
         </div>
-      )))}
+      ))}
     </div>
   );
 }
