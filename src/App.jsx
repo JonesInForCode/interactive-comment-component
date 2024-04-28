@@ -28,6 +28,14 @@ const addComment = (event) => {
     content: newComment,
   }
 
+  services
+    .create(commentObject)
+    .then(returnedComment => {
+      setComments(comments.concat(returnedComment))
+      setNewComment('')
+    })
+}
+
   const handleReplyClick = () => {
     setReplyVisible(true);
   };
@@ -43,15 +51,6 @@ const addComment = (event) => {
     setReplyVisible(false);
   };
 
-
-  services
-    .create(commentObject)
-    .then(returnedComment => {
-      setComments(comments.concat(returnedComment))
-      setNewComment('')
-    })
-}
-
   return (
     <div>
       {comments.map(comment => (
@@ -63,6 +62,9 @@ const addComment = (event) => {
           createdAt={comment.createdAt}
           score={comment.score}
           replies={comment.replies || []}
+          reply={handleReplyClick}
+          input={handleInputChange}
+          submit={handleSubmit}
           />
       ))}
     </div>
