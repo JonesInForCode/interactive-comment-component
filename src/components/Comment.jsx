@@ -9,8 +9,8 @@ export default function Comment({
   score,
   replies = [],
   reply,
-  input,
-  replyVisibility,
+  id,
+  replyToCommentId,
   ...props
 }) {
   const [voteCount, setVoteCount] = React.useState(0);
@@ -22,13 +22,6 @@ export default function Comment({
 
   const handleDownvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount - 1);
-  };
-
-  const handleSubmit = () => {
-    console.log("Reply submitted:", replyText);
-
-    setReplyText("");
-    setReplyVisible(false);
   };
   return (
     <>
@@ -48,22 +41,12 @@ export default function Comment({
             <p>
               {username} <span>{createdAt}</span>
             </p>
-            <button onClick={reply}>reply</button>
+            <button onClick={() => reply(id)}>reply</button>
           </div>
 
           <p>{content}</p>
         </div>
       </div>
-      {replyVisibility && (
-        <div>
-          <textarea
-            value={replyText}
-            onChange={input}
-            placeholder="Write a reply..."
-          />
-          <button onClick={() => handleSubmit()}>Submit</button>
-        </div>
-      )}
       {replies.length > 0 && (
         <div className={styles.repliesContainer}>
           <h3>Replies</h3>
