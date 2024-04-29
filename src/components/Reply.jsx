@@ -1,19 +1,10 @@
-import React from 'react'
+const Reply = ({ replyText, onSubmit, handleInputChange }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit(replyText);
+  };
 
-const Reply = ({ initialValue, onSubmit }) => {
-    const [replyText, setReplyText] = React.useState(initialValue)
-
-    const handleInputChange = (event) => {
-        setReplyText(event.target.value);
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSubmit(replyText);
-        setReplyText('')
-    }
     return (
-        
 <form onSubmit={handleSubmit}>
   <textarea
     value={replyText}

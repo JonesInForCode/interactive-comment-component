@@ -19,6 +19,10 @@ export default function Comment({
   const [comments, setComments] = useState(replies)
 
   const handleReplySubmit = (replyText) => {
+    if (!replyText.trim()) {
+      console.error("Empty reply");
+      return;
+    }
     const newReply = {
       content: replyText,
       user: {
