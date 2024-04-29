@@ -1,6 +1,7 @@
-import React from "react";
-import styles from "./Comment.module.css";
-import Reply from "./Reply";
+import { useState } from "react"
+import styles from "./Comment.module.css"
+import Reply from "./Reply"
+import services from "../services/services"
 
 export default function Comment({
   username,
@@ -10,35 +11,63 @@ export default function Comment({
   score,
   replies = [],
   id,
+  currentUser
 }) {
-  const [voteCount, setVoteCount] = React.useState(0);
-  const [replyText, setReplyText] = React.useState("");
-  const [currentReplyId, setCurrentReplyId] = React.useState(null);
+  const [voteCount, setVoteCount] = useState(0);
+  const [replyText, setReplyText] = useState("")
+  const [currentReplyId, setCurrentReplyId] = useState(null);
+  const [comments, setComments] = useState(replies)
 
   const handleReplySubmit = (replyText) => {
-    // connect to backend here
+    const newReply = {
+      content: replyText,
+      user: {
+        username: currentUser.username,
+        image: {
+          png: currentUser.image.png,
+        },
+      },
+      parentId: id,
+      createdAt: new Date().toISOString(),
+      score: 0,
+    }
 
-    //
+    services
+      .create(newReply)
+      .then((response) => {
+        const updatedComments = comments.map((comment) => {
+          if (comment.id === id) {
+            return {...comment, replies: [...comment.replies, response]
+          };
+        }
+        return comment;
+        });
+        setComments(updatedComments);
+      })
+      .catch((error) => {
+        console.error("Error creating new reply", error);
+      })
+
     setCurrentReplyId(null);
-    setReplyText("");
-  };
+    setReplyText("")
+  }
 
   const handleReplyClick = (id) => {
     closeOtherReplyBoxes(id);
     setCurrentReplyId(id === currentReplyId ? null : id);
-  };
+  }
 
   const handleInputChange = (event) => {
     setReplyText(event.target.value);
-  };
+  }
 
   const handleUpvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount + 1);
-  };
+  }
 
   const handleDownvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount - 1);
-  };
+  }
 
   // Helper function that hide other open comment reply boxes so that the user only ever see's '1 box'
   const closeOtherReplyBoxes = (currentId) => {
@@ -48,15 +77,15 @@ export default function Comment({
       replyBoxes.forEach((replyBox) => {
         const replyBoxId = parseInt(replyBox.dataset.id);
         if (replyBoxId === currentId) {
-          replyBox.style.display = "block";
+          replyBox.style.display = "block"
         } else {
-          replyBox.style.display = "none";
+          replyBox.style.display = "none"
         }
-      });
-    });
-  };
+      }
+    )}
+  );}
 
-  return (
+ return (
     <>
       <div className={styles.commentCard}>
         <div className={styles.votes}>
@@ -72,14 +101,11 @@ export default function Comment({
             </p>
             <button onClick={() => handleReplyClick(id)}>reply</button>
           </div>
-
           <p>{content}</p>
         </div>
       </div>
       <div
-        className={`${styles.replyBox} ${
-          currentReplyId === id ? styles.open : ""
-        }`}
+        className={`${styles.replyBox} ${currentReplyId === id ? styles.open : ""}`}
         data-id={id}
       >
         <Reply
@@ -102,6 +128,7 @@ export default function Comment({
                   createdAt={reply.createdAt}
                   score={reply.score}
                   replies={reply.replies}
+                  currentUser={currentUser}
                 />
               </div>
             ))}
@@ -109,5 +136,5 @@ export default function Comment({
         </div>
       )}
     </>
-  );
+  )
 }
