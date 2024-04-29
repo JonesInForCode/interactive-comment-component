@@ -39,14 +39,7 @@ export default function Comment({
     services
       .create(newReply)
       .then((response) => {
-        const updatedComments = comments.map((comment) => {
-          if (comment.id === id) {
-            return {...comment, replies: [...comment.replies, response]
-          };
-        }
-        return comment;
-        });
-        setComments(updatedComments);
+        setComments([...comments, response])
       })
       .catch((error) => {
         console.error("Error creating new reply", error);
