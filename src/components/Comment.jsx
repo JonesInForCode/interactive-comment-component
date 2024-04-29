@@ -1,7 +1,7 @@
-import { useState } from "react"
-import styles from "./Comment.module.css"
-import Reply from "./Reply"
-import services from "../services/services"
+import { useState } from "react";
+import styles from "./Comment.module.css";
+import Reply from "./Reply";
+import services from "../services/services";
 
 export default function Comment({
   username,
@@ -11,12 +11,14 @@ export default function Comment({
   score,
   replies = [],
   id,
-  currentUser
+  currentUser,
+  fetchComments,
+  isTopLevel = true,
 }) {
   const [voteCount, setVoteCount] = useState(0);
-  const [replyText, setReplyText] = useState("")
+  const [replyText, setReplyText] = useState("");
   const [currentReplyId, setCurrentReplyId] = useState(null);
-  const [comments, setComments] = useState(replies)
+  const [comments, setComments] = useState(replies);
 
   const handleReplySubmit = (replyText) => {
     if (!replyText.trim()) {
@@ -34,37 +36,37 @@ export default function Comment({
       parentId: id,
       createdAt: new Date().toISOString(),
       score: 0,
-    }
+    };
 
     services
       .create(newReply)
       .then((response) => {
-        setComments([...comments, response])
+        fetchComments();
       })
       .catch((error) => {
         console.error("Error creating new reply", error);
-      })
+      });
 
     setCurrentReplyId(null);
-    setReplyText("")
-  }
+    setReplyText("");
+  };
 
   const handleReplyClick = (id) => {
     closeOtherReplyBoxes(id);
     setCurrentReplyId(id === currentReplyId ? null : id);
-  }
+  };
 
   const handleInputChange = (event) => {
     setReplyText(event.target.value);
-  }
+  };
 
   const handleUpvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount + 1);
-  }
+  };
 
   const handleDownvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount - 1);
-  }
+  };
 
   // Helper function that hide other open comment reply boxes so that the user only ever see's '1 box'
   const closeOtherReplyBoxes = (currentId) => {
@@ -74,15 +76,15 @@ export default function Comment({
       replyBoxes.forEach((replyBox) => {
         const replyBoxId = parseInt(replyBox.dataset.id);
         if (replyBoxId === currentId) {
-          replyBox.style.display = "block"
+          replyBox.style.display = "block";
         } else {
-          replyBox.style.display = "none"
+          replyBox.style.display = "none";
         }
-      }
-    )}
-  );}
+      });
+    });
+  };
 
- return (
+  return (
     <>
       <div className={styles.commentCard}>
         <div className={styles.votes}>
@@ -96,21 +98,25 @@ export default function Comment({
             <p>
               {username} <span>{createdAt}</span>
             </p>
-            <button onClick={() => handleReplyClick(id)}>reply</button>
+            {/* Only render the reply button for top level comments */}
+            {isTopLevel && (
+              <button onClick={() => handleReplyClick(id)}>reply</button>
+            )}
           </div>
           <p>{content}</p>
         </div>
       </div>
-      <div
-        className={`${styles.replyBox} ${currentReplyId === id ? styles.open : ""}`}
-        data-id={id}
-      >
-        <Reply
-          onSubmit={handleReplySubmit}
-          replyText={replyText}
-          handleInputChange={handleInputChange}
-        />
-      </div>
+      {/* Conditionally render the reply box only for top level comments */}
+      {isTopLevel && currentReplyId === id && (
+        <div className={`${styles.replyBox} ${styles.open}`} data-id={id}>
+          <Reply
+            onSubmit={handleReplySubmit}
+            replyText={replyText}
+            handleInputChange={handleInputChange}
+          />
+        </div>
+      )}
+      {/* Render replies, markig them as not top level */}
       {replies.length > 0 && (
         <div className={styles.repliesContainer}>
           <h3>Replies</h3>
@@ -126,6 +132,8 @@ export default function Comment({
                   score={reply.score}
                   replies={reply.replies}
                   currentUser={currentUser}
+                  fetchComments={fetchComments}
+                  isTopLevel={false} // Indicate that these are not top-level comments
                 />
               </div>
             ))}
@@ -133,5 +141,5 @@ export default function Comment({
         </div>
       )}
     </>
-  )
+  );
 }

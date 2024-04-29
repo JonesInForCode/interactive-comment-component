@@ -8,7 +8,22 @@ function App() {
   const [comments, setComments] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState(null);
 
+  // ** functions ** //
+  const fetchComments = () => {
+    services
+      .getAll()
+      .then((initialData) => {
+         setComments(initialData.comments);
+         setCurrentUser(initialData.currentUser);
+       })
+       .catch((error) => console.error("Error fetching comments:", error));
+  }
+
   // ** useEffect Hooks ** //
+  React.useEffect(() => {
+    fetchComments();
+  }, []);
+
   React.useEffect(() => {
     services
       .getAll()
@@ -23,7 +38,6 @@ function App() {
     <div>
       {comments.length > 0 ? (
         comments.map((comment) => (
-          <div key={comment.id}>
             <Comment
               key={comment.id}
               id={comment.id}
@@ -34,8 +48,8 @@ function App() {
               score={comment.score}
               replies={comment.replies || []}
               currentUser={currentUser}
+              fetchComments={fetchComments}
             />
-          </div>
         ))
       ) : (
         <p>Loading comments...</p>
