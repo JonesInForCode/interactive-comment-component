@@ -9,6 +9,14 @@ const [isLoading, setIsLoading] = useState(false);
 
 // ** Functions ** //
 
+const handleInputChange = (event) => {
+  setInputText(event.target.value);
+};
+
+const handleNewCommentChange = (event) => {
+  setNewComment(event.target.value);
+};
+
 const handleCreateCommentSubmit = (newContent) => {
     if (!newContent.trim()) {
           console.error("Empty comment");
@@ -26,23 +34,19 @@ const handleCreateCommentSubmit = (newContent) => {
           score: 0,
         };
     services.create(newComment)
-         .then((response) => {
+         .then(() => {
             fetchComments();
-            setNewComment("");
+            setInputText("");
+            setNewComment("")
           })
           .catch((error) => {
             console.error("Error creating new comment", error);
           });
 };
-const handleInputChange = (event) => {
-    setInputText(event.target.value);
-};
-const handleNewCommentChange = (event) => {
-    setNewComment(event.target.value);
-};
+
 const handleCreateCommentClick = () => {
-    setIsLoading(true);
-    handleCreateCommentSubmit(newComment);
+  setIsLoading(true);
+  handleCreateCommentSubmit(newComment);
 };
 
     return (
