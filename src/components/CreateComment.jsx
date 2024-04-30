@@ -3,15 +3,10 @@ import services from "../services/services";
 
 const CreateComment = ({ fetchComments, currentUser }) => {
 // ** State Hooks ** //
-const [inputText, setInputText] = useState("");
 const [newComment, setNewComment] = useState("");
 const [isLoading, setIsLoading] = useState(false);
 
 // ** Functions ** //
-
-const handleInputChange = (event) => {
-  setInputText(event.target.value);
-};
 
 const handleNewCommentChange = (event) => {
   setNewComment(event.target.value);
@@ -36,8 +31,8 @@ const handleCreateCommentSubmit = (newContent) => {
     services.create(newComment)
          .then(() => {
             fetchComments();
-            setInputText("");
-            setNewComment("")
+            setNewComment("");
+            setIsLoading(false);
           })
           .catch((error) => {
             console.error("Error creating new comment", error);
