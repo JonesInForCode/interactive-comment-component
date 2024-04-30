@@ -21,6 +21,7 @@ export default function Comment({
   const [currentReplyId, setCurrentReplyId] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // ** functions ** //
 
@@ -55,6 +56,21 @@ export default function Comment({
     setReplyText("");
   };
 
+  const handleDeleteClick = () => {
+    if (!isDeleting) {
+      setIsDeleting(true);
+      services
+        .delete(id)
+          .then(() => {
+            fetchComments();
+            setIsDeleting(false);
+          })
+          .catch((error) => {
+            console.error("Error deleting comment", error);
+            setIsDeleting(false);
+          });
+        }
+      }
   const handleReplyClick = (id) => {
     closeOtherReplyBoxes(id);
     setCurrentReplyId(id === currentReplyId ? null : id);
@@ -132,7 +148,10 @@ export default function Comment({
               {username} <span>{createdAt}</span>
             </p>
             {currentUser.username === username && (
-              <button onClick={toggleEditMode}>edit</button>
+              <div className={styles.postModicationBtns}>
+                <button className={styles.editBtn} onClick={toggleEditMode}>edit</button>
+                <button className={styles.deleteBtn} onClick={handleDeleteClick}>delete</button>
+              </div>
             )}
             {/* Only render the reply button for top level comments */}
             {isTopLevel && (
