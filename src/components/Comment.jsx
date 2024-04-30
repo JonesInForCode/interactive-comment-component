@@ -15,11 +15,14 @@ export default function Comment({
   fetchComments,
   isTopLevel = true,
 }) {
+  // ** State Hooks ** //
   const [voteCount, setVoteCount] = useState(0);
   const [replyText, setReplyText] = useState("");
   const [currentReplyId, setCurrentReplyId] = useState(null);
-  const [comments, setComments] = useState(replies);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editedContent, setEditedContent] = useState(content);
 
+  // ** functions ** //
   const handleReplySubmit = (replyText) => {
     if (!replyText.trim()) {
       console.error("Empty reply");
@@ -84,6 +87,42 @@ export default function Comment({
     });
   };
 
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  };
+
+  const handleEditChange = (event) => {
+    setEditedContent(event.target.value);
+  };
+
+  const saveEdit = () => {
+    if (!editedContent.trim()) {
+      console.error("Empty reply");
+      return;
+    }
+    const editedReply = {
+      content: editedContent,
+      user: {
+        username: currentUser.username,
+        image: {
+          png: currentUser.image.png,
+        },
+      },
+      parentId: id,
+      createdAt: new Date().toISOString(),
+      score: 0,
+    };
+    services
+      .update(id, editedReply)
+      .then(() => {
+        fetchComments();
+        setIsEditMode(false);
+      })
+      .catch((error) => {
+        console.error("Error editing reply", error);
+      });
+  };
+
   return (
     <>
       <div className={styles.commentCard}>
@@ -98,12 +137,27 @@ export default function Comment({
             <p>
               {username} <span>{createdAt}</span>
             </p>
+            {currentUser.username === username && (
+              <button onClick={toggleEditMode}>edit</button>
+            )}
             {/* Only render the reply button for top level comments */}
             {isTopLevel && (
               <button onClick={() => handleReplyClick(id)}>reply</button>
             )}
           </div>
-          <p>{content}</p>
+          {isEditMode ? (
+            <>
+              <textarea
+                className={styles.editTextarea}
+                value={editedContent}
+                onChange={handleEditChange}
+                autoFocus
+              />
+              <button onClick={saveEdit}>save</button>
+            </>
+          ) : (
+            <p>{content}</p>
+          )}
         </div>
       </div>
       {/* Conditionally render the reply box only for top level comments */}
