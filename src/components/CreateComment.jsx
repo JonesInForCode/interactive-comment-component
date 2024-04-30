@@ -1,7 +1,7 @@
 import { useState } from "react";
 import services from "../services/services";
 
-const CreateComment = () => {
+const CreateComment = ({ fetchComments, currentUser }) => {
 // ** State Hooks ** //
 const [inputText, setInputText] = useState("");
 const [newComment, setNewComment] = useState("");
@@ -28,7 +28,7 @@ const handleCreateCommentSubmit = (newContent) => {
     services.create(newComment)
          .then((response) => {
             fetchComments();
-            setInputText("");
+            setNewComment("");
           })
           .catch((error) => {
             console.error("Error creating new comment", error);
@@ -49,7 +49,7 @@ const handleCreateCommentClick = () => {
         <>
             <textarea
                 value={newComment}
-                onChange={handleInputChange}
+                onChange={handleNewCommentChange}
                 placeholder="Write a comment..."
             />
             <button type="submit" onClick={handleCreateCommentClick} disabled={isLoading}>
