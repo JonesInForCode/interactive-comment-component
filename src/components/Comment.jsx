@@ -39,13 +39,13 @@ export default function Comment({
         },
       },
       parentId: id,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date().toLocaleDateString('en-US', { year: '2-digit', month: '2-digit', day: '2-digit' }),
       score: 0,
     };
 
     services
       .create(newReply)
-      .then((response) => {
+      .then(() => {
         fetchComments();
       })
       .catch((error) => {
@@ -60,7 +60,7 @@ export default function Comment({
     if (!isDeleting) {
       setIsDeleting(true);
       services
-        .delete(id)
+        .deleteById(id)
           .then(() => {
             fetchComments();
             setIsDeleting(false);
