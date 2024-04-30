@@ -1,6 +1,7 @@
 import React from "react";
 import Comment from "./components/Comment.jsx";
 import "./App.css";
+import CreateComment from "./components/CreateComment.jsx";
 import services from "./services/services.js";
 
 function App() {
@@ -13,11 +14,11 @@ function App() {
     services
       .getAll()
       .then((initialData) => {
-         setComments(initialData.comments);
-         setCurrentUser(initialData.currentUser);
-       })
-       .catch((error) => console.error("Error fetching comments:", error));
-  }
+        setComments(initialData.comments);
+        setCurrentUser(initialData.currentUser);
+      })
+      .catch((error) => console.error("Error fetching comments:", error));
+  };
 
   // ** useEffect Hooks ** //
   React.useEffect(() => {
@@ -29,15 +30,16 @@ function App() {
       .getAll()
       .then((initialData) => {
         setComments(initialData.comments);
-        setCurrentUser(initialData.currentUser)
+        setCurrentUser(initialData.currentUser);
       })
       .catch((error) => console.error("Error fetching comments:", error));
   }, []);
 
   return (
-    <div>
-      {comments.length > 0 ? (
-        comments.map((comment) => (
+    <React.Fragment>
+      <div className="commentArea">
+        {comments.length > 0 ? (
+          comments.map((comment) => (
             <Comment
               key={comment.id}
               id={comment.id}
@@ -50,11 +52,15 @@ function App() {
               currentUser={currentUser}
               fetchComments={fetchComments}
             />
-        ))
-      ) : (
-        <p>Loading comments...</p>
-      )}
-    </div>
+          ))
+        ) : (
+          <p>Loading comments...</p>
+        )}
+      </div>
+      <div className="createComment">
+        <CreateComment currentUser={currentUser} fetchComments={fetchComments} />
+      </div>
+    </React.Fragment>
   );
 }
 

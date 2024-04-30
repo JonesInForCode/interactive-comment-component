@@ -23,6 +23,7 @@ export default function Comment({
   const [editedContent, setEditedContent] = useState(content);
 
   // ** functions ** //
+
   const handleReplySubmit = (replyText) => {
     if (!replyText.trim()) {
       console.error("Empty reply");
