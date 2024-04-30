@@ -102,18 +102,11 @@ export default function Comment({
     }
     const editedReply = {
       content: editedContent,
-      user: {
-        username: currentUser.username,
-        image: {
-          png: currentUser.image.png,
-        },
-      },
-      parentId: id,
-      createdAt: new Date().toISOString(),
-      score: 0,
+
     };
     services
       .update(id, editedReply)
+      .then(console.log(id))
       .then(() => {
         fetchComments();
         setIsEditMode(false);
@@ -178,7 +171,7 @@ export default function Comment({
             {replies.map((reply) => (
               <div key={reply.id}>
                 <Comment
-                  key={reply.id}
+                  id={reply.id}
                   username={reply.user.username}
                   avatar={reply.user.image.png}
                   content={reply.content}
