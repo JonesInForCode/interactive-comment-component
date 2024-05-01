@@ -8,6 +8,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons/faArrowDown";
 import { faReply } from "@fortawesome/free-solid-svg-icons/faReply";
+import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 
 export default function Comment({
   username,
@@ -155,7 +156,7 @@ export default function Comment({
           <div className={styles.commentInfoTitle}>
             <img src={avatar} className={styles.avatar} alt={username} />
             <p className={styles.date}>
-              {username} <span>{createdAt}</span>
+              {username} {currentUser && currentUser.username === username && (<FontAwesomeIcon icon={faUser} />)} <span>{createdAt}</span>
             </p>
             <div className={styles.postModicationBtns}>
               <button
@@ -164,12 +165,19 @@ export default function Comment({
               >
                 <FontAwesomeIcon icon={faReply} />
               </button>
-              <button className={styles.editBtn} onClick={toggleEditMode}>
-                <FontAwesomeIcon icon={faPencilAlt} />
-              </button>
-              <button className={styles.deleteBtn} onClick={handleDeleteClick}>
-                <FontAwesomeIcon icon={faTrash} />
-              </button>
+              {currentUser && currentUser.username === username && (
+                <>
+                  <button className={styles.editBtn} onClick={toggleEditMode}>
+                    <FontAwesomeIcon icon={faPencilAlt} />
+                  </button>
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={handleDeleteClick}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </>
+              )}
             </div>
           </div>
           {isEditMode ? (
@@ -180,7 +188,9 @@ export default function Comment({
                 onChange={handleEditChange}
                 autoFocus
               />
-              <button className={styles.saveEditBtn} onClick={saveEdit}>save</button>
+              <button className={styles.saveEditBtn} onClick={saveEdit}>
+                save
+              </button>
             </>
           ) : (
             <p>{content}</p>
