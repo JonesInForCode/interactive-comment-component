@@ -21,17 +21,19 @@
   --color-black: #000000;
   --color-gray: #e1e1e1;
   --color-light-gray: #f5f5f5;
+  --color-dark-gray: #7e7e7e;
   --max-width-comment: 520px;
+  --transition-base: color 0.3s ease;
 }
 
 .commentCard {
   display: flex;
-  background-color: #ffffffe1;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  max-width: 520px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-white);
+  padding: var(--padding-medium);
+  border-radius: var(--border-radius-large);
+  margin-bottom: var(--padding-base);
+  max-width: var(--max-width-comment);
+  box-shadow: var(--shadow-base);
 }
 
 .votes {
@@ -39,35 +41,36 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: hsl(0, 0%, 83%);
+  background-color: var(--color-light-gray);
   align-self: flex-start;
-  border-radius: 10px;
-  margin-right: 10px;
+  border-radius: var(--border-radius-large);
+  margin-right: var(--padding-base);
   margin-top: 30px;
-  padding: 5px;
+  padding: var(--padding-small);
 }
 
 .votes button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: 18px;
+  font-size: var(--font-size-medium);
 }
+
 
 .voteBtnUp:hover,
 .voteBtnUp:focus {
-    color: rgb(134, 238, 134);
+  color: var(--color-success);
 }
 
 .voteBtnDown:hover,
 .voteBtnDown:focus {
-    color: rgb(238, 134, 134);
+  color: var(--color-danger);
 }
 
 .votes div {
   font-weight: bold;
-  padding: 5px;
-  color: #6e66db;
+  padding: var(--padding-small);
+  color: var(--color-primary);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -76,44 +79,47 @@
   flex-direction: column;
   flex: 1;
 }
+
 .commentInfoTitle {
   display: flex;
   font-weight: bold;
 }
+
 .avatar {
   width: 40px;
   height: 40px;
 }
 .commentInfoTitle span {
-  color: #9e9e9e;
+  color: var(--color-secondary);
   font-weight: lighter;
-  margin-left: 15px;
+  margin-left: var(--padding-medium);
   margin-right: 4.5rem;
 }
+
 .commentInfoTitle > p {
   display: inline;
   align-self: center;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 var(--padding-large);
 }
 
 .repliesContainer {
   position: relative;
   margin-left: 40px;
-  padding-left: 20px;
+  padding-left: var(--padding-large);
 }
 
 .repliesContainer::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #7e7e7e;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-dark-gray);
 }
 
 .repliesWrapper {
-  margin-top: 10px;
+  margin-top: var(--padding-base);
 }
 
 .replyBox {
@@ -129,8 +135,8 @@
 .commentInfo .editBtn,
 .commentInfo .deleteBtn,
 .commentInfo .replyBtn {
-  transition: color 0.3s ease;
-  padding: 0 .5rem 0 .5rem;
+  transition: var(--transition-base);
+  padding: 0 var(--padding-small) 0 var(--padding-small);
 }
 
 .postModicationBtns {
@@ -151,14 +157,14 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: #4eb6db;
+  color: var(--color-info);
 }
 
 .commentInfo .deleteBtn {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: #fb2020;
+  color: var(--color-warning);
 }
 
 .commentInfo .replyBtn {
@@ -170,39 +176,39 @@
 }
 
 .commentInfo .editBtn:hover {
-    color: #3a9cb7;
+  color: #3a9cb7;
 }
 
 .commentInfo .deleteBtn:hover {
-    color: #e01e1e;
+  color: #e01e1e;
 }
 
 .editTextArea {
-    width: 100%;
-    padding: 1.2rem;
-    border: none;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    resize: none;
-    outline: none;
-    font-size: 16px;
-    font-weight: 400;
+  width: 100%;
+  padding: 1.2rem;
+  border: none;
+  border-radius: var(--border-radius-large);
+  margin-top: var(--padding-base);
+  margin-bottom: var(--padding-base);
+  resize: none;
+  outline: none;
+  font-size: var(--font-size-base);
+  font-weight: 400;
 }
 
 .saveEditBtn {
-  padding: 1rem 2rem;
+  padding: var(--padding-base) var(--padding-large);
   border: none;
   background-color: #0d74ce;
-  color: #fff;
+  color: var(--color-white);
   text-transform: uppercase;
   font-weight: 600;
-  border-radius: 8px;
-  margin-top: .25rem;
+  border-radius: var(--border-radius-base);
+  margin-top: var(--padding-small);
   cursor: pointer;
 }
 
 .saveEditBtn:hover {
-    background-color: #0a5ca4;
-    color: #dfdfdf;
+  background-color: #0a5ca4;
+  color: var(--color-gray);
 }
