@@ -1,108 +1,150 @@
 .commentCard {
-    display: flex;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    max-width: 520px;
+  display: flex;
+  background-color: #ffffffe1;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 520px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .votes {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: hsl(239, 57%, 85%);
-    align-self: flex-start;
-    border-radius: 10px;
-    margin-right: 10px;
-    margin-top: 30px;
-    padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(239, 57%, 85%);
+  align-self: flex-start;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 30px;
+  padding: 5px;
 }
 
 .votes button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 18px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.voteBtnUp:hover,
+.voteBtnUp:focus {
+    color: rgb(134, 238, 134);
+}
+
+.voteBtnDown:hover,
+.voteBtnDown:focus {
+    color: rgb(238, 134, 134);
 }
 
 .votes div {
-    font-weight: bold;
-    padding: 5px;
+  font-weight: bold;
+  padding: 5px;
 }
 
 .commentInfo {
-    display: inline-flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .commentInfoTitle {
-    display: flex;
-    font-weight: bold;
+  display: flex;
+  font-weight: bold;
 }
 .avatar {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 .commentInfoTitle span {
-    color: grey;
-    font-weight: lighter;
-    margin-left: 15px;
-    margin-right: 4.5rem;
+  color: #9e9e9e;
+  font-weight: lighter;
+  margin-left: 15px;
+  margin-right: 4.5rem;
 }
 .commentInfoTitle > p {
-    display: inline;
-    align-self: center;
-    margin: 0 0 0 20px;
+  display: inline;
+  align-self: center;
+  margin: 0 0 0 20px;
 }
 
 .repliesContainer {
-    margin-left: 40px;
+  position: relative;
+  margin-left: 40px;
+  padding-left: 20px;
+}
+
+.repliesContainer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #7e7e7e;
 }
 
 .repliesWrapper {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .replyBox {
-    display: none;
+  display: none;
 }
 
 .replyBox.open {
-    display: block;
+  display: block;
 }
 
 /* ***Buttons and Boxes*** */
 
+.commentInfo .editBtn,
+.commentInfo .deleteBtn,
+.commentInfo .replyBtn {
+  transition: color 0.3s ease;
+  padding: 0 .5rem 0 .5rem;
+}
+
+.postModicationBtns {
+  margin-left: auto;
+}
+
 .commentInfo .postModicationBtns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: none;
-    background-color: transparent;
-    margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  margin-left: auto;
 }
 
 .commentInfo .editBtn {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: #4eb6db;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #4eb6db;
 }
 
 .commentInfo .deleteBtn {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: #fb2020;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #fb2020;
 }
 
 .commentInfo .replyBtn {
-    border: none;
-    display: inline;
-    background-color: transparent;
-    cursor: pointer;
-    margin: 0 0 0 auto;
+  border: none;
+  display: inline;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0 0 0 auto;
+}
+
+.commentInfo .editBtn:hover {
+    color: #3a9cb7;
+}
+
+.commentInfo .deleteBtn:hover {
+    color: #e01e1e;
 }

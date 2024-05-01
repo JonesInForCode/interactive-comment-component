@@ -5,6 +5,9 @@ import services from "../services/services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons/faPencilAlt";
 import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons/faArrowDown";
+import { faReply } from "@fortawesome/free-solid-svg-icons/faReply";
 
 export default function Comment({
   username,
@@ -64,17 +67,17 @@ export default function Comment({
       services
         .deleteById(id)
         .then(console.log(id))
-          .then(() => {
-            console.log(id);
-            fetchComments();
-            setIsDeleting(false);
-          })
-          .catch((error) => {
-            console.error("Error deleting comment", error);
-            setIsDeleting(false);
-          });
-        }
-      }
+        .then(() => {
+          console.log(id);
+          fetchComments();
+          setIsDeleting(false);
+        })
+        .catch((error) => {
+          console.error("Error deleting comment", error);
+          setIsDeleting(false);
+        });
+    }
+  };
   const handleReplyClick = (id) => {
     closeOtherReplyBoxes(id);
     setCurrentReplyId(id === currentReplyId ? null : id);
@@ -123,7 +126,6 @@ export default function Comment({
     }
     const editedReply = {
       content: editedContent,
-
     };
     services
       .update(id, editedReply)
@@ -141,9 +143,13 @@ export default function Comment({
     <>
       <div className={styles.commentCard}>
         <div className={styles.votes}>
-          <button onClick={handleUpvote}>+</button>
+          <button className={styles.voteBtnUp} onClick={handleUpvote}>
+            <FontAwesomeIcon icon={faArrowUp} />
+          </button>
           <div>{score + voteCount}</div>
-          <button onClick={handleDownvote}>-</button>
+          <button className={styles.voteBtnDown} onClick={handleDownvote}>
+            <FontAwesomeIcon icon={faArrowDown} />
+          </button>
         </div>
         <div className={styles.commentInfo}>
           <div className={styles.commentInfoTitle}>
@@ -153,17 +159,25 @@ export default function Comment({
             </p>
             {currentUser.username === username && (
               <div className={styles.postModicationBtns}>
+                {/* Only render the reply button for top level comments */}
+                {isTopLevel && (
+                  <button
+                    className={styles.replyBtn}
+                    onClick={() => handleReplyClick(id)}
+                  >
+                    <FontAwesomeIcon icon={faReply} />
+                  </button>
+                )}
                 <button className={styles.editBtn} onClick={toggleEditMode}>
                   <FontAwesomeIcon icon={faPencilAlt} />
                 </button>
-                <button className={styles.deleteBtn} onClick={handleDeleteClick}>
+                <button
+                  className={styles.deleteBtn}
+                  onClick={handleDeleteClick}
+                >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
-            )}
-            {/* Only render the reply button for top level comments */}
-            {isTopLevel && (
-              <button className={styles.replyBtn} onClick={() => handleReplyClick(id)}>reply</button>
             )}
           </div>
           {isEditMode ? (
@@ -194,7 +208,6 @@ export default function Comment({
       {/* Render replies, markig them as not top level */}
       {replies.length > 0 && (
         <div className={styles.repliesContainer}>
-          <h3>Replies</h3>
           <div className={styles.repliesWrapper}>
             {replies.map((reply) => (
               <div key={reply.id}>
