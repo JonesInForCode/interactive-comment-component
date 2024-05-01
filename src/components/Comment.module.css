@@ -49,20 +49,12 @@
     color: grey;
     font-weight: lighter;
     margin-left: 15px;
+    margin-right: 4.5rem;
 }
 .commentInfoTitle > p {
     display: inline;
     align-self: center;
     margin: 0 0 0 20px;
-}
-
-.commentInfo button {
-    border: none;
-    display: inline;
-    background-color: transparent;
-    cursor: pointer;
-    color: #333;
-    margin: 0 0 0 auto;
 }
 
 .repliesContainer {
@@ -79,4 +71,38 @@
 
 .replyBox.open {
     display: block;
+}
+
+/* ***Buttons and Boxes*** */
+
+.commentInfo .postModicationBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    margin-left: auto;
+}
+
+.commentInfo .editBtn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #4eb6db;
+}
+
+.commentInfo .deleteBtn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #fb2020;
+}
+
+.commentInfo .replyBtn {
+    border: none;
+    display: inline;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 0 0 auto;
 }

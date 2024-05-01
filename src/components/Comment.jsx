@@ -2,6 +2,9 @@ import { useState } from "react";
 import styles from "./Comment.module.css";
 import Reply from "./Reply";
 import services from "../services/services";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons/faPencilAlt";
+import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
 
 export default function Comment({
   username,
@@ -39,7 +42,6 @@ export default function Comment({
         },
       },
       parentId: id,
-      createdAt: new Date().toLocaleDateString('en-US', { year: '2-digit', month: '2-digit', day: '2-digit' }),
       score: 0,
     };
 
@@ -146,18 +148,22 @@ export default function Comment({
         <div className={styles.commentInfo}>
           <div className={styles.commentInfoTitle}>
             <img src={avatar} className={styles.avatar} alt={username} />
-            <p>
+            <p className={styles.date}>
               {username} <span>{createdAt}</span>
             </p>
             {currentUser.username === username && (
               <div className={styles.postModicationBtns}>
-                <button className={styles.editBtn} onClick={toggleEditMode}>edit</button>
-                <button className={styles.deleteBtn} onClick={handleDeleteClick}>delete</button>
+                <button className={styles.editBtn} onClick={toggleEditMode}>
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </button>
+                <button className={styles.deleteBtn} onClick={handleDeleteClick}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
               </div>
             )}
             {/* Only render the reply button for top level comments */}
             {isTopLevel && (
-              <button onClick={() => handleReplyClick(id)}>reply</button>
+              <button className={styles.replyBtn} onClick={() => handleReplyClick(id)}>reply</button>
             )}
           </div>
           {isEditMode ? (

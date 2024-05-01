@@ -25,7 +25,6 @@ const handleCreateCommentSubmit = (newContent) => {
               png: currentUser.image.png,
             },
           },
-          createdAt: new Date().toISOString(),
           score: 0,
         };
     services.create(newComment)
