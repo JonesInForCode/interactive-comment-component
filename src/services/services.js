@@ -22,8 +22,12 @@ const getById = (id) => {
 }
 
 const deleteById = (id) => {
+    console.log(id)
     const request = axios.delete(`${baseUrl}/${id}`)
-    return request.then(response => response.data)
+    console.log(request)
+    return request.then(response => {
+        console.log(response)
+        response.data})
 }
 
 export default {
