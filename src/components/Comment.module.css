@@ -212,3 +212,61 @@
   background-color: #0a5ca4;
   color: var(--color-gray);
 }
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+  .commentCard {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .votes {
+    flex-direction: row;
+    align-self: stretch;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: var(--padding-base);
+  }
+
+  .votes button {
+    font-size: var(--font-size-medium);
+  }
+
+  .commentInfo {
+    margin-left: 0;
+  }
+
+  .repliesContainer {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .repliesContainer::before {
+    display: none;
+  }
+
+  .commentInfoTitle span {
+    margin-right: 0;
+  }
+
+  .commentInfoTitle > p {
+    margin: 0 0 0 var(--padding-medium);
+  }
+
+  .postModicationBtns {
+    margin-left: 0;
+    margin-top: var(--padding-base);
+  }
+
+  .commentInfo .postModicationBtns {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .commentInfo .editBtn,
+  .commentInfo .deleteBtn,
+  .commentInfo .replyBtn {
+    margin-bottom: var(--padding-small);
+  }
+}
