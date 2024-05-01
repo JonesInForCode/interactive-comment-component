@@ -98,17 +98,6 @@
   display: block;
 }
 
-.replyBox button {
-    display: inline;
-    padding: 1rem 2rem;
-    border: none;
-    background-color: #0d74ce;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 600;
-    border-radius: 8px;
-}
-
 /* ***Buttons and Boxes*** */
 
 .commentInfo .editBtn,
@@ -174,4 +163,14 @@
     font-size: 16px;
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
+}
+
+.saveEditBtn {
+  padding: 1rem 2rem;
+  border: none;
+  background-color: #0d74ce;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 8px;
 }

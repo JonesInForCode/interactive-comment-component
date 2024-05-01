@@ -180,7 +180,7 @@ export default function Comment({
                 onChange={handleEditChange}
                 autoFocus
               />
-              <button onClick={saveEdit}>save</button>
+              <button className={styles.saveEditBtn} onClick={saveEdit}>save</button>
             </>
           ) : (
             <p>{content}</p>
