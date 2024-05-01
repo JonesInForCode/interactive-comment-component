@@ -1,3 +1,5 @@
+import styles from "./Reply.module.css"
+
 const Reply = ({ replyText, onSubmit, handleInputChange }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -5,13 +7,13 @@ const Reply = ({ replyText, onSubmit, handleInputChange }) => {
   };
 
     return (
-<form onSubmit={handleSubmit}>
+<form className={styles.replyForm} onSubmit={handleSubmit}>
   <textarea
     value={replyText}
     onChange={handleInputChange}
     placeholder="Write a comment..."
   />
-  <button type="submit">Submit</button>
+  <button className={styles.replyBtn} type="submit">Submit</button>
 </form>
     )
 }

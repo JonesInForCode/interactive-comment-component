@@ -1,0 +1,19 @@
+.replyForm {
+    display: flex;
+}
+
+.replyForm .replyBtn {
+    padding: .5rem 1rem;
+    border: none;
+    background-color: #0d74ce;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.replyBtn:hover {
+    background-color: #0a5ca4;
+    color: #dfdfdf;
+}

@@ -38,7 +38,7 @@ function App() {
   return (
     <React.Fragment>
       <div className="commentArea">
-        {comments.length > 0 ? (
+        {comments.length > 0 || null ? (
           comments.map((comment) => (
             <Comment
               key={comment.id}
