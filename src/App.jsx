@@ -57,9 +57,15 @@ function App() {
           <p>Loading comments...</p>
         )}
       </div>
-      <div className="createComment">
-        <CreateComment currentUser={currentUser} fetchComments={fetchComments} />
-      </div>
+      {/* Render CreateComment only if currentUser is not null */}
+      {currentUser && (
+        <div className="createComment">
+          <CreateComment
+            currentUser={currentUser}
+            fetchComments={fetchComments}
+          />
+        </div>
+      )}
     </React.Fragment>
   );
 }

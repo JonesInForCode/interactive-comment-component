@@ -146,7 +146,7 @@ export default function Comment({
           <button className={styles.voteBtnUp} onClick={handleUpvote}>
             <FontAwesomeIcon icon={faArrowUp} />
           </button>
-          <div>{score + voteCount}</div>
+          <div className={styles.voteTxt}>{score + voteCount}</div>
           <button className={styles.voteBtnDown} onClick={handleDownvote}>
             <FontAwesomeIcon icon={faArrowDown} />
           </button>

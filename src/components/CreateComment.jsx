@@ -46,6 +46,7 @@ const handleCreateCommentClick = () => {
 
     return (
         <div className={styles.createContainer}>
+          <img src={currentUser.image.png} className={styles.avatar} alt={currentUser.username} />
             <textarea
                 className={styles.createComment}
                 value={newComment}
@@ -53,7 +54,7 @@ const handleCreateCommentClick = () => {
                 placeholder="Write a comment..."
             />
             <button className={styles.submitBtn} type="submit" onClick={handleCreateCommentClick} disabled={isLoading}>
-                {isLoading ? "Creating comment..." : "Create comment"}
+                {isLoading ? "Sending..." : "Send"}
             </button>
         </div>
     )
