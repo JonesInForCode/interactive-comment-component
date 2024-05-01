@@ -61,7 +61,9 @@ export default function Comment({
       setIsDeleting(true);
       services
         .deleteById(id)
+        .then(console.log(id))
           .then(() => {
+            console.log(id);
             fetchComments();
             setIsDeleting(false);
           })
