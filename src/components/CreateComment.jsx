@@ -1,5 +1,6 @@
 import { useState } from "react";
 import services from "../services/services";
+import styles from "./CreateComment.module.css";
 
 const CreateComment = ({ fetchComments, currentUser }) => {
 // ** State Hooks ** //
@@ -44,16 +45,17 @@ const handleCreateCommentClick = () => {
 };
 
     return (
-        <>
+        <div className={styles.createContainer}>
             <textarea
+                className={styles.createComment}
                 value={newComment}
                 onChange={handleNewCommentChange}
                 placeholder="Write a comment..."
             />
-            <button type="submit" onClick={handleCreateCommentClick} disabled={isLoading}>
+            <button className={styles.submitBtn} type="submit" onClick={handleCreateCommentClick} disabled={isLoading}>
                 {isLoading ? "Creating comment..." : "Create comment"}
             </button>
-        </>
+        </div>
     )
 }
 

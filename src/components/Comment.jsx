@@ -157,28 +157,20 @@ export default function Comment({
             <p className={styles.date}>
               {username} <span>{createdAt}</span>
             </p>
-            {currentUser.username === username && (
-              <div className={styles.postModicationBtns}>
-                {/* Only render the reply button for top level comments */}
-                {isTopLevel && (
-                  <button
-                    className={styles.replyBtn}
-                    onClick={() => handleReplyClick(id)}
-                  >
-                    <FontAwesomeIcon icon={faReply} />
-                  </button>
-                )}
-                <button className={styles.editBtn} onClick={toggleEditMode}>
-                  <FontAwesomeIcon icon={faPencilAlt} />
-                </button>
-                <button
-                  className={styles.deleteBtn}
-                  onClick={handleDeleteClick}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
-            )}
+            <div className={styles.postModicationBtns}>
+              <button
+                className={styles.replyBtn}
+                onClick={() => handleReplyClick(id)}
+              >
+                <FontAwesomeIcon icon={faReply} />
+              </button>
+              <button className={styles.editBtn} onClick={toggleEditMode}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </button>
+              <button className={styles.deleteBtn} onClick={handleDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
           </div>
           {isEditMode ? (
             <>

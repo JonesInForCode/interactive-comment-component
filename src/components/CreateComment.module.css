@@ -1,0 +1,19 @@
+.createContainer {
+    display: flex;
+}
+
+.createComment {
+    width: 100%;
+    height: 10vh;
+    margin: 1rem 1rem 1rem 0;
+    border: none;
+    border-radius: 10px;
+    text-indent: 12px;
+    padding: 1rem;
+}
+
+.submitBtn {
+    width: 10vw;
+    align-self: center;
+    padding: 1rem 2rem;
+}
