@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "./components/Comment.jsx";
+import MyLoader from "./components/ContentLoader.jsx";
 import "./App.css";
 import CreateComment from "./components/CreateComment.jsx";
 import services from "./services/services.js";
@@ -54,7 +55,7 @@ function App() {
             />
           ))
         ) : (
-          <p>Loading comments...</p>
+          <MyLoader />
         )}
       </div>
       {/* Render CreateComment only if currentUser is not null */}
