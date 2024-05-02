@@ -9,7 +9,7 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons/faArrowDown";
 import { faReply } from "@fortawesome/free-solid-svg-icons/faReply";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
-import AlertModal from "./AlertModal";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 
 export default function Comment({
   username,
@@ -30,6 +30,7 @@ export default function Comment({
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // ** functions ** //
 
@@ -64,6 +65,10 @@ export default function Comment({
   };
 
   const handleDeleteClick = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
     if (!isDeleting) {
       setIsDeleting(true);
       services
@@ -73,10 +78,12 @@ export default function Comment({
           console.log(id);
           fetchComments();
           setIsDeleting(false);
+          setShowDeleteModal(false);
         })
         .catch((error) => {
           console.error("Error deleting comment", error);
           setIsDeleting(false);
+          setShowDeleteModal(false);
         });
     }
   };
@@ -95,6 +102,10 @@ export default function Comment({
 
   const handleDownvote = () => {
     setVoteCount((prevVoteCount) => prevVoteCount - 1);
+  };
+
+  const handleCloseModal = () => {
+    setShowDeleteModal(false);
   };
 
   // Helper function that hide other open comment reply boxes so that the user only ever see's '1 box'
@@ -230,6 +241,14 @@ export default function Comment({
             ))}
           </div>
         </div>
+      )}
+      {showDeleteModal && (
+        <DeleteConfirmModal
+          show={showDeleteModal}
+          handleClose={handleCloseModal}
+          handleDelete={handleConfirmDelete}
+          commentId={id}
+        />
       )}
     </>
   );
