@@ -9,6 +9,7 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons/faArrowDown";
 import { faReply } from "@fortawesome/free-solid-svg-icons/faReply";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import AlertModal from "./AlertModal";
 
 export default function Comment({
   username,
