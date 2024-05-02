@@ -66,25 +66,25 @@ The backend server provides the following API endpoints:
 
 ## Screenshots
 
-- ![Screenshot 1](screenshots/Capture.PNG)
+![Screenshot 1](screenshots/Capture.PNG)
   
-- ![Screenshot 2](screenshots/Reply-to-Comment.gif)
+ ![Screenshot 2](screenshots/Reply-to-Comment.gif)
   
-- ![Screenshot 3](screenshots/chrome-capture-2024-5-2-1.gif)
+ ![Screenshot 3](screenshots/chrome-capture-2024-5-2-1.gif)
   
-- ![Screenshot 4](screenshots/chrome-capture-2024-5-2-2.png)
+ ![Screenshot 4](screenshots/chrome-capture-2024-5-2-2.png)
   
-- ![Screenshot 5](screenshots/chrome-capture-2024-5-2-3.gif)
+ ![Screenshot 5](screenshots/chrome-capture-2024-5-2-3.gif)
   
-- ![Screenshot 6](screenshots/chrome-capture-2024-5-2-4.gif)
+ ![Screenshot 6](screenshots/chrome-capture-2024-5-2-4.gif)
   
-- ![Screenshot 7](screenshots/chrome-capture-2024-5-2-5.gif)
+ ![Screenshot 7](screenshots/chrome-capture-2024-5-2-5.gif)
   
-- ![Screenshot 8](screenshots/chrome-capture-2024-5-2.gif)
+ ![Screenshot 8](screenshots/chrome-capture-2024-5-2.gif)
   
-- ![Screenshot 9](screenshots/chrome-capture-2024-5-2.png)
+ ![Screenshot 9](screenshots/chrome-capture-2024-5-2.png)
   
-- ![Screenshot 9](screenshots/reply-to-comment-2.gif)
+ ![Screenshot 9](screenshots/reply-to-comment-2.gif)
 
 
 ## Acknowledgements
