@@ -9,6 +9,7 @@ This is the frontend for the Interactive Comment Component project from frontend
 - [Features](#features)
 - [Cool Features and Implementation Details](#cool-features-and-implementation-details)
 - [API Endpoints](#api-endpoints)
+- [Screenshots](#screenshots)
 - [Contact](#contact)
 
 ## Introduction
@@ -65,15 +66,15 @@ The backend server provides the following API endpoints:
 
 ## Screenshots
 
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
-![Screenshot 1](screenshots/screenshot1.png){:height="50%" width="50%"}
+- ![Screenshot 1](screenshots/Capture.PNG){:height="50%" width="50%"}
+- ![Screenshot 2](screenshots/Reply-to-Comment-(1).gif){:height="50%" width="50%"}
+- ![Screenshot 3](screenshots/Reply-to-Comment.gif){:height="50%" width="50%"}
+- ![Screenshot 4](screenshots/chrome-capture-2024-5-2-(1).gif){:height="50%" width="50%"}
+- ![Screenshot 5](screenshots/screenshot1.png){:height="50%" width="50%"}
+- ![Screenshot 6](screenshots/screenshot1.png){:height="50%" width="50%"}
+- ![Screenshot 7](screenshots/screenshot1.png){:height="50%" width="50%"}
+- ![Screenshot 8](screenshots/screenshot1.png){:height="50%" width="50%"}
+- ![Screenshot 9](screenshots/screenshot1.png){:height="50%" width="50%"}
 
 
 ## Acknowledgements
