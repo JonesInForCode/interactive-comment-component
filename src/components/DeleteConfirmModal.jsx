@@ -30,11 +30,13 @@ const DeleteConfirmModal = ({
       </div>
 
       <div className={styles.modalBody}>
-        <p>Are you sure you want to delete this comment?</p>
+        <p>Are you sure you want to delete this comment? This will permenently
+          delete this comment and cannot be undone...
+        </p>
       </div>
 
       <div className={styles.modalFooter}>
-        <Button onClick={handleConfirm}>Delete</Button>
+        <Button className={styles.deleteButton} onClick={handleConfirm}>Delete</Button>
         <Button onClick={handleClose}>Cancel</Button>
       </div>
     </Modal>

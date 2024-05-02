@@ -31,6 +31,7 @@ export default function Comment({
   const [editedContent, setEditedContent] = useState(content);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [voteStatus, setVoteStatus] = useState(null);
 
   // ** functions ** //
 
@@ -97,11 +98,29 @@ export default function Comment({
   };
 
   const handleUpvote = () => {
-    setVoteCount((prevVoteCount) => prevVoteCount + 1);
+    if (voteStatus === "upvoted") {
+      setVoteStatus(null);
+      setVoteCount((prevVoteCount) => prevVoteCount - 1);
+    } else if (voteStatus === "downvoted") {
+      setVoteStatus("upvoted");
+      setVoteCount((prevVoteCount) => prevVoteCount + 2);
+    } else {
+      setVoteStatus("upvoted");
+      setVoteCount((prevVoteCount) => prevVoteCount + 1);
+    }
   };
 
   const handleDownvote = () => {
-    setVoteCount((prevVoteCount) => prevVoteCount - 1);
+    if (voteStatus === "downvoted") {
+      setVoteStatus(null);
+      setVoteCount((prevVoteCount) => prevVoteCount + 1);
+    } else if (voteStatus === "upvoted") {
+      setVoteStatus("downvoted");
+      setVoteCount((prevVoteCount) => prevVoteCount - 2);
+    } else {
+      setVoteStatus("downvoted");
+      setVoteCount((prevVoteCount) => prevVoteCount - 1);
+    }
   };
 
   const handleCloseModal = () => {
@@ -122,6 +141,34 @@ export default function Comment({
         }
       });
     });
+  };
+
+  // Helper function that looks for @usernames in the comment and turns them into links(fakelinks)
+  const highlightMentions = (content) => {
+    const mentionRegex = /@(\w+)/g;
+    const parts = [];
+
+    let match;
+    let lastIndex = 0;
+
+    while ((match = mentionRegex.exec(content)) !== null) {
+      const username = match[1];
+      const beforeMention = content.slice(lastIndex, match.index);
+      const mentionText = match[0];
+
+      parts.push(beforeMention);
+      parts.push(
+        <span key={match.index} className={styles.mention}>
+          {mentionText}
+        </span>
+      );
+
+      lastIndex = mentionRegex.lastIndex;
+    }
+    if (lastIndex < content.length) {
+      parts.push(content.slice(lastIndex));
+    }
+    return parts;
   };
 
   const toggleEditMode = () => {
@@ -156,11 +203,23 @@ export default function Comment({
     <>
       <div className={styles.commentCard}>
         <div className={styles.votes}>
-          <button className={styles.voteBtnUp} onClick={handleUpvote}>
+          <button
+            className={`${styles.voteBtnUp} ${
+              voteStatus === "upvoted" ? styles.active : ""
+            }`}
+            onClick={() => handleUpvote("upvote")}
+            disabled={voteStatus === "downvoted"}
+          >
             <FontAwesomeIcon icon={faArrowUp} />
           </button>
           <div className={styles.voteTxt}>{score + voteCount}</div>
-          <button className={styles.voteBtnDown} onClick={handleDownvote}>
+          <button
+            className={`${styles.voteBtnDown} ${
+              voteStatus === "downvoted" ? styles.active : ""
+            }`}
+            onClick={() => handleDownvote("downvote")}
+            disabled={voteStatus === "upvoted"}
+          >
             <FontAwesomeIcon icon={faArrowDown} />
           </button>
         </div>
@@ -168,7 +227,11 @@ export default function Comment({
           <div className={styles.commentInfoTitle}>
             <img src={avatar} className={styles.avatar} alt={username} />
             <p className={styles.date}>
-              {username} {currentUser && currentUser.username === username && (<FontAwesomeIcon icon={faUser} />)} <span>{createdAt}</span>
+              {username}{" "}
+              {currentUser && currentUser.username === username && (
+                <FontAwesomeIcon icon={faUser} />
+              )}{" "}
+              <span>{createdAt}</span>
             </p>
             <div className={styles.postModicationBtns}>
               <button
@@ -205,7 +268,7 @@ export default function Comment({
               </button>
             </>
           ) : (
-            <p>{content}</p>
+            <p>{isEditMode ? editedContent : highlightMentions(content)}</p>
           )}
         </div>
       </div>

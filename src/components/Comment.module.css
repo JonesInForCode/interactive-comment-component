@@ -57,14 +57,21 @@
 }
 
 
-.voteBtnUp:hover,
-.voteBtnUp:focus {
+.voteBtnUp:hover {
   color: var(--color-success);
 }
 
-.voteBtnDown:hover,
-.voteBtnDown:focus {
+.voteBtnDown:hover {
   color: var(--color-danger);
+}
+
+.voteBtnUp.active {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+.voteBtnDown.active {
+  background-color: var(--color-warning);
+  color: var(--color-light-gray);
 }
 
 .votes div {
@@ -213,6 +220,14 @@
   color: var(--color-gray);
 }
 
+.mention {
+  color: blue;
+}
+
+.mention:hover {
+  text-decoration: underline;
+}
+
 /* Media Queries */
 
 @media (max-width: 768px) {
@@ -221,52 +236,67 @@
     max-width: 100%;
   }
 
+  .commentInfo {
+    margin-left: 0;
+    order: -1;
+  }
+
+  .commentInfoTitle {
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: center; /* Vertically center the items */
+  }
+
+  .commentInfoTitle span {
+    margin-right: 0;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .commentInfoTitle > p {
+    margin: 0 0 0 var(--padding-medium);
+    flex-shrink: 0; /* Prevent shrinking */
+    white-space: nowrap; /* Prevent wrapping within the <p> element */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis (...) for long text */
+    order: 0;
+  }
+
+  .postModicationBtns {
+    margin-left: 0;
+    margin-top: var(--padding-base);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    order: -1;
+  }
+
   .votes {
     flex-direction: row;
-    align-self: stretch;
-    margin-right: 0;
+    align-self: flex-start;
+    margin-right: var(--padding-base);
     margin-top: 0;
-    margin-bottom: var(--padding-base);
+    margin-bottom: 0;
+    order: 1;
   }
 
   .votes button {
     font-size: var(--font-size-medium);
   }
 
-  .commentInfo {
-    margin-left: 0;
+  .commentInfo .editBtn,
+  .commentInfo .deleteBtn,
+  .commentInfo .replyBtn {
+    margin-bottom: 0;
   }
 
   .repliesContainer {
     margin-left: 0;
     padding-left: 0;
+    order: 2;
   }
 
   .repliesContainer::before {
     display: none;
-  }
-
-  .commentInfoTitle span {
-    margin-right: 0;
-  }
-
-  .commentInfoTitle > p {
-    margin: 0 0 0 var(--padding-medium);
-  }
-
-  .postModicationBtns {
-    margin-left: 0;
-    margin-top: var(--padding-base);
-  }
-
-  .commentInfo .postModicationBtns {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .commentInfo .editBtn,
-  .commentInfo .deleteBtn,
-  .commentInfo .replyBtn {
-    margin-bottom: var(--padding-small);
   }
 }
