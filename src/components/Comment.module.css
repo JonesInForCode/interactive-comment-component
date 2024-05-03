@@ -234,6 +234,7 @@
   .commentCard {
     flex-direction: column;
     max-width: 100%;
+    margin: 1rem .75rem;
   }
 
   .commentInfo {
@@ -261,12 +262,6 @@
   }
 
   .postModicationBtns {
-    margin-left: 0;
-    margin-top: var(--padding-base);
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
     width: 100%;
     order: -1;
   }
@@ -288,6 +283,10 @@
   .commentInfo .deleteBtn,
   .commentInfo .replyBtn {
     margin-bottom: 0;
+  }
+
+  .editBtn {
+    margin-left: auto;
   }
 
   .repliesContainer {

@@ -234,12 +234,15 @@ export default function Comment({
               <span>{createdAt}</span>
             </p>
             <div className={styles.postModicationBtns}>
-              <button
-                className={styles.replyBtn}
-                onClick={() => handleReplyClick(id)}
-              >
-                <FontAwesomeIcon icon={faReply} />
-              </button>
+              {isTopLevel && (
+                <button
+                  className={styles.replyBtn}
+                  onClick={() => handleReplyClick(id)}
+                >
+                  <FontAwesomeIcon icon={faReply} />
+                </button>
+              )}
+
               {currentUser && currentUser.username === username && (
                 <>
                   <button className={styles.editBtn} onClick={toggleEditMode}>
