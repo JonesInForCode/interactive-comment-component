@@ -14,7 +14,7 @@ This is the frontend for the Interactive Comment Component project from frontend
 
 ## Introduction
 
-This project is a single-page application (SPA) built sing React.js and Vite. It serves as the frontend for the Interactive Comment Component project from frontend mentor. The application provides a full-stack CRUD functionality for managing comments, allowing users to create, read, update, and delete comments.
+This project is a single-page application (SPA) built uing React.js and Node.js. It serves as the frontend for the Interactive Comment Component project from frontend mentor. The application provides a full-stack CRUD functionality for managing comments, allowing users to create, read, update, and delete comments.
 
 ## Technologies Used
 
