@@ -1,4 +1,4 @@
-# Interactive Comment Component Backend Server
+# Interactive Comment Component Frontend
 
 This is the frontend for the Interactive Comment Component project from frontend mentor. This project provides a full-stack CRUD (Create, Read, Update, Delete) functionality for managing comments.
 
