@@ -112,4 +112,4 @@ My name is Nick Jones (JonesInForCode) - I am a Frontend Developer and Aspiring 
 
 ## Contact
 
-If you have any questions or feedback, please feel free to reach out to me at jonesinforcode.steep536@passinbox.com
+If you have any questions or feedback, please feel free to reach out to me at nico.rjones@outlook.com
